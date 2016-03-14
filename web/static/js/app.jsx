@@ -17,16 +17,4 @@ import "phoenix_html";
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
-
-import socket from "./socket";
-
-import Pet from './pet';
-
-import * as R from 'ramda';
-
-import React from 'react';
-import { render } from 'react-dom';
-
-R.forEach(petUi => {
-  render(<Pet channelId="1" />, petUi);
-}, document.getElementsByClassName('pet-ui'));
+import Pet from './pet/index';

@@ -8,7 +8,11 @@ defmodule Bitpet.Simulation do
 
   # API
   def start_link do
-    GenServer.start_link(__MODULE__, nil)
+    GenServer.start_link(__MODULE__, nil, name: :pet_simulation)
+  end
+
+  def get_house(id) do
+    GenServer.call(:pet_simulation, {:get_house, id})
   end
 
   # Backend
@@ -46,6 +50,12 @@ defmodule Bitpet.Simulation do
     {:ok, state}
   end
 
+  def handle_call({:get_house, pet_id}, _from, state) do
+    {_, house} = Enum.find(state.houses, fn {id, _} -> id == pet_id end)
+
+    {:reply, house, state}
+  end
+
   def handle_info(:tick, state) do
     :erlang.cancel_timer(state.timer)
 
@@ -57,7 +67,7 @@ defmodule Bitpet.Simulation do
 
   defp process_tick(state) do
     # tick all of our houses.
-    Enum.each(state.houses, fn {id, house} -> House.tick(house) end)
+    Enum.each(state.houses, fn {_, house} -> House.tick(house) end)
 
     # broadcast all of our house states to their equivalent channel.
     Enum.each(state.houses, fn {id, house} ->

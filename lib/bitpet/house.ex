@@ -13,6 +13,10 @@ defmodule Bitpet.House do
     GenServer.cast(pid, :tick)
   end
 
+  def feed_pet(pid) do
+    GenServer.call(pid, :feed_pet)
+  end
+
   def get_pet(pid) do
     GenServer.call(pid, :get_pet)
   end
@@ -26,6 +30,15 @@ defmodule Bitpet.House do
 
   def handle_call(:get_pet, _from, state) do
     {:reply, state.pet, state}
+  end
+
+  def handle_call(:feed_pet, _from, state) do
+    pet = state.pet
+    |> Bitpet.Pet.update_happiness(10)   # Add 10 happiness when feeding
+
+    state = %{state | pet: pet}
+
+    {:reply, state, state}
   end
 
   def handle_cast(:tick, state) do
