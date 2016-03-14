@@ -1,0 +1,51 @@
+#pet-ui-react {
+    display: flex;
+    flex-direction: column;
+}
+
+.pet {
+    height: 300px;
+    background: gray;
+}
+
+.small-button-list {
+    height: 20px;
+}
+
+.small-button-list li {
+    height: 20px;
+}
+
+.tall-button-list {
+    height: 100px;
+}
+
+.tall-button-list li {
+    height: 100px;
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+.button-list {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    list-style-type: none;
+    background: gray;
+
+    margin: 0;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+
+.button-list li {
+    margin: 0;
+    background: tomato;
+    width: 100%;
+    color: white;
+    text-align: center;
+}

@@ -53,10 +53,8 @@ let socket = new Socket("/socket", {params: {token: window.userToken}});
 
 socket.connect();
 
-console.log('Joining');
-
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("pets:1", {});
+/*let channel = socket.channel("pets:1", {});
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp); })
   .receive("error", resp => { console.log("Unable to join", resp); });
@@ -65,6 +63,6 @@ channel.on('sync_pet', pet => {
   console.log('sync_pet payload:');
   console.log(pet);
   document.getElementById('pet-happiness').innerHTML = pet.happiness;
-});
+});*/
 
 export default socket;
