@@ -27,7 +27,8 @@ class PetApp extends Component {
       top: '0px',
       left: '0px',
       height: '300px',
-      width: '100%'
+      width: '100%',
+      zIndex: '0'
     };
 
     const petGifStyle = {
@@ -36,13 +37,15 @@ class PetApp extends Component {
       left: '0',
       right: '0',
       marginLeft: 'auto',
-      marginRight: 'auto'
+      marginRight: 'auto',
+      zIndex: '1'
     };
 
     const petFoodStyle = {
       position: 'absolute',
       top: '0',
-      left: '0'
+      left: '0',
+      zIndex: '2'
     };
 
     // Our pet image is based on it's mood:

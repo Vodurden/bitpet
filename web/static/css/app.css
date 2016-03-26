@@ -1,3 +1,8 @@
+/* Get rid of default padding */
+* {
+    padding: 0
+}
+
 /* Phoenix inline forms in links and buttons */
 form.link, form.button {
   display: inline;
