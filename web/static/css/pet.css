@@ -16,15 +16,21 @@
     height: 20px;
 }
 
-.tall-button-list {
-    height: 100px;
-}
-
 .tall-button-list li {
-    height: 100px;
-    line-height: 100px;
     font-weight: bold;
     font-size: 3em;
+}
+
+.tall-button-list li img {
+    width: 50%;
+}
+
+.tall-button-list li:hover {
+    background: #c6cfd1;
+}
+
+.tall-button-list li:active {
+    background: #ffffff
 }
 
 .button-list {
@@ -32,7 +38,7 @@
     flex-flow: row nowrap;
     justify-content: space-around;
     list-style-type: none;
-    background: gray;
+    background: #abb3b5;
 
     margin: 0;
     -webkit-margin-before: 0em;
@@ -44,8 +50,8 @@
 
 .button-list li {
     margin: 0;
-    background: tomato;
     width: 100%;
     color: white;
     text-align: center;
+    background: #abb3b5;
 }

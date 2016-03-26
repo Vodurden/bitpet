@@ -74,14 +74,18 @@ class PetApp extends Component {
     return (
       <div className="pet-ui-react">
         <ul className="button-list tall-button-list">
-          <li>Help</li>
-          <li>Vita</li>
-          <li onClick={() => this.props.onFeedClick(this.props.petChannelId)}>Food</li>
-          <li>Talk</li>
-        </ul>
-
-        <ul className="button-list small-button-list">
-          <li>Happy ({this.props.pet.happiness})</li>
+          <li>
+            <img src="/images/icons/help.png"></img>
+          </li>
+          <li>
+            <img src="/images/icons/medi.png"></img>
+          </li>
+          <li onClick={() => this.props.onFeedClick(this.props.petChannelId)}>
+            <img src="/images/icons/food.png"></img>
+          </li>
+          <li>
+            <img src="/images/icons/talk.png"></img>
+          </li>
         </ul>
 
         <div style={petStyle}>
@@ -91,10 +95,22 @@ class PetApp extends Component {
         </div>
 
         <ul className="button-list tall-button-list">
-          <li>Trng</li>
-          <li>Lght</li>
-          <li>Play</li>
-          <li>Sync</li>
+          <li>
+            <img src="/images/icons/train.png"></img>
+          </li>
+          <li>
+            <img src="/images/icons/light.png"></img>
+          </li>
+          <li>
+            <img src="/images/icons/play.png"></img>
+          </li>
+          <li>
+            <img src="/images/icons/sync.png"></img>
+          </li>
+        </ul>
+
+        <ul className="button-list small-button-list">
+          <li>Happy ({this.props.pet.happiness})</li>
         </ul>
       </div>
     );
