@@ -12,6 +12,9 @@ defmodule Bitpet.Pet do
   end
 
   def update_happiness(pet, amount) do
-    %{pet | happiness: pet.happiness + amount}
+    # Clamp between 0 and 110
+    new_happiness = (pet.happiness + amount) |> max(0) |> min(110)
+
+    %{pet | happiness: new_happiness}
   end
 end
