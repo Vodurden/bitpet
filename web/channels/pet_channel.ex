@@ -32,6 +32,10 @@ defmodule Bitpet.PetChannel do
 
     pet = Bitpet.House.feed_pet(house)
 
+    # Now that we've fed our pet we should sync it so other
+    # players can see the updates.
+    Bitpet.Simulation.sync_pet(pet_id)
+
     {:reply, {:ok, pet}, socket}
   end
 
