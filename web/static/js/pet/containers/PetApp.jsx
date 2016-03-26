@@ -18,8 +18,7 @@ class PetApp extends Component {
 
     const petStyle = {
       position: 'relative',
-      height: '300px',
-      background: 'gray'
+      height: '300px'
     };
 
     const petBackgroundStyle = {
@@ -47,6 +46,17 @@ class PetApp extends Component {
       left: '0',
       zIndex: '2'
     };
+
+    const petGridStyle = {
+      position: 'absolute',
+      top: '0px',
+      left: '0px',
+      width: '100%',
+      height: '300px',
+      zIndex: '10',
+      background: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQImWNggIKNGzdKMaADFMGNGzdKoWPsKrEJAgAMqhOWw2pceAAAAABJRU5ErkJggg==) repeat'
+    };
+
 
     // Our pet image is based on it's mood:
     //
@@ -77,6 +87,7 @@ class PetApp extends Component {
         <div style={petStyle}>
           <img style={petBackgroundStyle} src="/images/environments/background_00000.png"></img>
           <img style={petGifStyle} src={image}></img>
+          <div style={petGridStyle}></div>
         </div>
 
         <ul className="button-list tall-button-list">
