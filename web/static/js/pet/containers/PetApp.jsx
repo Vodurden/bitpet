@@ -39,6 +39,12 @@ class PetApp extends Component {
       marginRight: 'auto'
     };
 
+    const petFoodStyle = {
+      position: 'absolute',
+      top: '0',
+      left: '0'
+    };
+
     // Our pet image is based on it's mood:
     //
     // Happiness > 100          = happy.gif
