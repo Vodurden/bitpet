@@ -4,7 +4,7 @@ defmodule Bitpet.Simulation do
   alias Bitpet.Pet, as: Pet
   alias Bitpet.House, as: House
 
-  @tick_time_in_ms 1000
+  @tick_time_in_ms 30 * 1000 # Every 30 seconds.
 
   # API
   def start_link do
@@ -13,6 +13,10 @@ defmodule Bitpet.Simulation do
 
   def get_house(id) do
     GenServer.call(:pet_simulation, {:get_house, id})
+  end
+
+  def sync_pet(id) do
+    GenServer.cast(:pet_simulation, {:sync_pet, id})
   end
 
   # Backend
@@ -56,6 +60,14 @@ defmodule Bitpet.Simulation do
     {:reply, house, state}
   end
 
+  def handle_cast({:sync_pet, pet_id}, state) do
+    house_state = Enum.find(state.houses, fn {id, _} -> id == pet_id end)
+
+    synchronize_house(house_state)
+
+    {:noreply, state}
+  end
+
   def handle_info(:tick, state) do
     :erlang.cancel_timer(state.timer)
 
@@ -69,18 +81,24 @@ defmodule Bitpet.Simulation do
     # tick all of our houses.
     Enum.each(state.houses, fn {_, house} -> House.tick(house) end)
 
-    # broadcast all of our house states to their equivalent channel.
-    Enum.each(state.houses, fn {id, house} ->
-      pet = House.get_pet(house)
-
-      payload = %{
-        "name": pet.name,
-        "happiness": pet.happiness
-      }
-
-      Bitpet.Endpoint.broadcast!("pets:#{id}", "sync_pet", payload)
-    end)
+    synchronize_houses(state)
 
     state
+  end
+
+  defp synchronize_houses(state) do
+    # broadcast all of our house states to their equivalent channel.
+    Enum.each(state.houses, &synchronize_house/1)
+  end
+
+  defp synchronize_house({id, house}) do
+    pet = House.get_pet(house)
+
+    payload = %{
+      "name": pet.name,
+      "happiness": pet.happiness
+    }
+
+    Bitpet.Endpoint.broadcast!("pets:#{id}", "sync_pet", payload)
   end
 end

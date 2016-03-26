@@ -26,6 +26,17 @@ export function syncPetConnect(petChannelId) {
 
     const channel = getOrJoinPetChannel(petChannelId, onJoin, onFail);
 
+    // Request an initial sync to trigger an early `sync_pet` payload.
+    // We need to do this to ensure our initial data payload is updated
+    // in a timely fashion.
+    channel.push('sync_pet', {})
+      .receive('ok', () => {
+        console.log('Initial sync request success!');
+      })
+      .receive('error', () => {
+        console.log('Initial sync request failed!');
+      });
+
     channel.on('sync_pet', pet => {
       console.log('sync_pet payload:');
       console.log(pet);
@@ -76,13 +87,14 @@ export function feedPet(channelId) {
     const channel = getOrJoinPetChannel(channelId);
 
     channel.push('feed_pet', {})
-      .receive('ok', () => {
+      .receive('ok', (pet) => {
         console.log('Fed pet.');
-        dispatch(feedPetSuccess());
+        console.log(pet);
+        dispatch(feedPetSuccess(pet));
       })
       .receive('error', error => {
         console.log('Error feeding pet', JSON.stringify(error));
-        dispatch(feedPetFailure());
+        dispatch(feedPetFailure(error));
       });
   };
 }
@@ -93,14 +105,16 @@ export function feedPetRequest() {
   };
 };
 
-export function feedPetSuccess() {
+export function feedPetSuccess(pet) {
   return {
-    type: FEED_PET_SUCCESS
+    type: FEED_PET_SUCCESS,
+    pet: pet
   };
 }
 
-export function feedPetFailure() {
+export function feedPetFailure(error) {
   return {
-    type: FEED_PET_FAILURE
+    type: FEED_PET_FAILURE,
+    error: error
   };
 }

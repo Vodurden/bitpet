@@ -1,4 +1,4 @@
-import { SYNC_PET_CONNECT_SUCCESS, SYNC_PET } from './actions';
+import { FEED_PET_SUCCESS, SYNC_PET_CONNECT_SUCCESS, SYNC_PET } from './actions';
 
 const initialState = {
   petChannelId: 1,
@@ -16,6 +16,10 @@ function petApp(state, action) {
         channel: action.channel
       });
     case SYNC_PET:
+      return Object.assign({}, state, {
+        pet: action.pet
+      });
+    case FEED_PET_SUCCESS:
       return Object.assign({}, state, {
         pet: action.pet
       });

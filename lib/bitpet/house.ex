@@ -38,7 +38,7 @@ defmodule Bitpet.House do
 
     state = %{state | pet: pet}
 
-    {:reply, state, state}
+    {:reply, state.pet, state}
   end
 
   def handle_cast(:tick, state) do

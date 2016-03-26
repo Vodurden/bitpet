@@ -16,6 +16,42 @@ class PetApp extends Component {
   render() {
     console.log(this.props);
 
+    const petStyle = {
+      position: 'relative',
+      height: '300px',
+      background: 'gray'
+    };
+
+    const petBackgroundStyle = {
+      position: 'absolute',
+      top: '0px',
+      left: '0px',
+      height: '300px',
+      width: '100%'
+    };
+
+    const petGifStyle = {
+      position: 'absolute',
+      top: '110px',
+      left: '0',
+      right: '0',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    };
+
+    // Our pet image is based on it's mood:
+    //
+    // Happiness > 100          = happy.gif
+    // 70 > Hapiness > 100      = idle.gif
+    // 0 > Happiness > 70       = sad.gif
+    const petImage = (pet) => {
+      if(pet.happiness > 100) { return "happy"; }
+      if(pet.happiness > 70) { return "idle"; }
+      return "sad";
+    };
+
+    const image = '/images/pets/001/' + petImage(this.props.pet) + '.gif';
+
     return (
       <div className="pet-ui-react">
         <ul className="button-list tall-button-list">
@@ -29,8 +65,9 @@ class PetApp extends Component {
           <li>Happy ({this.props.pet.happiness})</li>
         </ul>
 
-        <div className="pet">
-          <span>Pet here</span>
+        <div style={petStyle}>
+          <img style={petBackgroundStyle} src="/images/environments/background_00000.png"></img>
+          <img style={petGifStyle} src={image}></img>
         </div>
 
         <ul className="button-list tall-button-list">
