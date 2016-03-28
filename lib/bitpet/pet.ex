@@ -8,7 +8,7 @@ defmodule Bitpet.Pet do
   defstruct [:name, :happiness]
 
   def new(name) do
-    %Pet{name: name, happiness: 100}
+    %Pet{name: name, happiness: 50}
   end
 
   def update_happiness(pet, amount) do

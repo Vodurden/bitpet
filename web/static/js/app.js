@@ -13,6 +13,11 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html";
 
+// Use long stack traces for all Rx stuff
+import Rx from 'rx';
+
+Rx.config.longStackSupport = true;
+
 // Import local files
 //
 // Local files can be imported directly using relative

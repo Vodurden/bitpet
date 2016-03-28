@@ -1,24 +1,21 @@
 {
   "repository": {},
   "dependencies": {
+    "@cycle/core": "^6.0.3",
+    "@cycle/dom": "^9.2.2",
+    "@cycle/isolate": "^1.2.0",
+    "rx": "^4.1.0",
     "babel-brunch": "~6.0.0",
     "clean-css-brunch": "~1.8.0",
     "css-brunch": "~1.7.0",
     "javascript-brunch": "~1.8.0",
-    "lodash": "^4.6.1",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "process": "^0.11.2",
     "ramda": "^0.19.1",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-redux": "^4.4.1",
-    "redux": "^3.3.1",
-    "redux-thunk": "^2.0.1",
     "uglify-js-brunch": "~1.7.0"
   },
   "devDependencies": {
-    "brunch": "^2.4.2",
-    "react-brunch": "^1.0.9"
+    "brunch": "^2.5.x"
   }
 }
