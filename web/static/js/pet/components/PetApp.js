@@ -98,7 +98,9 @@ function renderPetFood(state) {
     return img({ style: petFoodStyle, src: 'images/food.gif' });
   }
 
-  return img({ style: petFoodStyle, src: '' });
+  // We need to fully remove the `src` tag when hiding the image to ensure
+  // firefox doesn't render a 'broken image' link.
+  return img({ /* no src on purpose */ });
 }
 
 /**
