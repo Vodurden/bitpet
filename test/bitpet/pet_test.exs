@@ -7,9 +7,9 @@ defmodule Bitpet.PetTest do
     assert pet.name == "TestPet"
   end
 
-  test "New pets start with 100 happiness" do
+  test "New pets start with 50 happiness" do
     pet = Bitpet.Pet.new("TestPet")
 
-    assert pet.happiness == 100
+    assert pet.happiness == 50
   end
 end
