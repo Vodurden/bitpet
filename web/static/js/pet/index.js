@@ -7,7 +7,7 @@ import Rx from 'rx';
 import Cycle from '@cycle/core';
 import {makeDOMDriver, h1, div, input, p} from '@cycle/dom';
 
-import PetApp from './components/PetApp';
+import Pet from './components/Pet';
 
 import { makeWSDriver } from './drivers/WSDriver';
 
@@ -19,7 +19,7 @@ function main(sources) {
     props$: props$
   };
 
-  const petApp = PetApp(childSources);
+  const petApp = Pet(childSources);
   const petVTree$ = petApp.DOM;
   const petWS$ = petApp.WS;
 
